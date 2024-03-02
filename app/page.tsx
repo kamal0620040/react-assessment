@@ -1,4 +1,4 @@
-import { ProductCard } from "./components";
+import { Pagination, ProductCard } from "./components";
 
 interface Product {
   id: number;
@@ -14,10 +14,21 @@ interface Product {
   images: string[];
 }
 
-export default async function Home() {
-  const products = await fetch("https://dummyjson.com/products").then((res) =>
-    res.json()
-  );
+interface Props {
+  searchParams: {
+    page: string;
+  };
+}
+
+export default async function Home({ searchParams }: Props) {
+  const page = parseInt(searchParams.page) || 1;
+  const pageSize = 8;
+
+  const products = await fetch(
+    `https://dummyjson.com/products?limit=${pageSize}&skip=${
+      (page - 1) * pageSize
+    }`
+  ).then((res) => res.json());
 
   return (
     <div>
@@ -32,6 +43,11 @@ export default async function Home() {
             <ProductCard key={idx} product={product} />
           ))}
         </div>
+        <Pagination
+          itemCount={products.total}
+          pageSize={pageSize}
+          currentPage={parseInt(searchParams.page)}
+        />
       </div>
     </div>
   );
