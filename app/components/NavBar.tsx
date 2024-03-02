@@ -4,11 +4,14 @@ import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import useAuthContext from "../hooks/useAuthContext";
 import Image from "next/image";
+import { useLogout } from "../hooks/useLogout";
 
 const NavBar = () => {
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
   const { user } = useAuthContext();
   const currentPath = usePathname();
+  const { logout } = useLogout();
+
   const links = [
     { label: "Home", href: "/" },
     { label: "Category", href: "/category" },
@@ -55,7 +58,7 @@ const NavBar = () => {
                 {[`${user.username}`, "Logout"].map((item) => (
                   <p
                     className="p-1 px-2 rounded-lg text-zinc-800 font-semibold text-sm my-3 cursor-pointer hover:bg-zinc-500"
-                    onClick={() => {}}
+                    onClick={() => logout()}
                     key={item}
                   >
                     {item}
