@@ -46,7 +46,7 @@ export default async function Home({ searchParams }: Props) {
         <Pagination
           itemCount={products.total}
           pageSize={pageSize}
-          currentPage={parseInt(searchParams.page)}
+          currentPage={page}
         />
       </div>
     </div>
