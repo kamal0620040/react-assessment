@@ -38,7 +38,7 @@ export default async function Home({ searchParams }: Props) {
             Explore our Products
           </h1>
         </div>
-        <div className="mt-3 w-full flex flex-wrap gap-10 justify-center">
+        <div className="mt-3 w-full flex flex-wrap gap-x-10 gap-y-8 justify-center">
           {products.products.map((product: Product, idx: number) => (
             <ProductCard key={idx} product={product} />
           ))}

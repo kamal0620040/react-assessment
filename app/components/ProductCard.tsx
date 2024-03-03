@@ -34,7 +34,8 @@ const ProductCard = ({ product }: { product: Props }) => {
             onError={() => {
               //   set default product image here
             }}
-            layout="fill"
+            fill
+            sizes="2xl"
             style={{ objectFit: "cover" }}
             alt="product"
           />
